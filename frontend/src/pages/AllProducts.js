@@ -22,10 +22,10 @@ const AllProducts = () => {
   return (
     <div>
       <div className="bg-white dark:bg-slate-800 py-2 px-4 flex justify-between items-center">
-        <h2 className="font-bold text-lg dark:text-white">All Products</h2>
+        <h2 className="font-bold text-lg dark:text-slate-300">All Products</h2>
 
         <button
-          className="UploadBtn dark:bg-slate-700 dark:text-white"
+          className="UploadBtn dark:bg-slate-700 dark:text-slate-300"
           onClick={() => {
             setopenUploadProduct(true);
           }}

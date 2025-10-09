@@ -19,6 +19,10 @@ const CategoryWiseProductDisplay = ({ category, heading, excludeProductId }) => 
     fetchUserAddToCart();
   };
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   const fetchData = async () => {
     setloading(true);
     const categoryProduct = await fetchCategoryWiseProduct(category);
@@ -85,29 +89,29 @@ const CategoryWiseProductDisplay = ({ category, heading, excludeProductId }) => 
             return (
               <Link
                 to={"/product/" + product?._id}
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] bg-white rounded-sm shadow"
+                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-800 bg-white rounded-sm shadow"
                 key={"product" + index}
                 onClick={scrollTop}
               >
-                <div className="bg-slate-300 h-48 p-4 min-w-[120px] md:min-w-[145px] flex justify-center items-center">
+                <div className="bg-slate-300 h-48 dark:bg-gray-700 p-4 min-w-[120px] md:min-w-[145px] flex justify-center items-center">
                   <img
                     src={product?.productImage[0]}
                     alt=""
-                    className="h-full object-scale-down transition-all hover:scale-110 mix-blend-multiply"
+                    className="h-full object-scale-down transition-all hover:scale-110 dark:mix-blend-normal mix-blend-multiply"
                   />
                 </div>
                 <div className="p-4 grid gap-3">
-                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black">
+                  <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black dark:text-slate-300">
                     {product?.productName}
                   </h2>
-                  <p className="capitalize text-slate-500">
+                  <p className="capitalize text-slate-500 dark:text-gray-400">
                     {product?.category}
                   </p>
                   <div className="flex gap-3">
-                    <p className="text-red-600 font-medium">
+                    <p className="text-red-600 font-medium dark:text-red-400">
                       {displayINRCurrency(product?.sellingPrice)}
                     </p>
-                    <p className="text-slate-500 line-through">
+                    <p className="text-slate-500 line-through dark:text-gray-400">
                       {displayINRCurrency(product?.price)}
                     </p>
                   </div>

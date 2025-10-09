@@ -46,7 +46,7 @@ const AllUsers = () => {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody className="dark:text-white">
+        <tbody className="dark:text-slate-300 dark:bg-slate-800">
           {allUser.map((el, index) => {
             return (
               <tr key={index}>
@@ -57,7 +57,7 @@ const AllUsers = () => {
                 <td>{moment(el?.createdAt).format("LL")}</td>
                 <td>
                   <button
-                    className="bg-green-100 dark:bg-green-800 hover:bg-green-500 dark:hover:bg-green-700 hover:text-white dark:text-white cursor-pointer rounded-full p-2"
+                    className="bg-green-100 dark:bg-green-800 hover:bg-green-500 dark:hover:bg-green-700 hover:text-white dark:text-slate-300 cursor-pointer rounded-full p-2"
                     onClick={() => {
                       setupdateUserDetails(el);
                       setopenUpdateRole(true);

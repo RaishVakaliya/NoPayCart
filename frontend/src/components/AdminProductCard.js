@@ -17,15 +17,15 @@ const AdminProductCard = ({ data, fetchdata }) => {
             className="mx-auto object-fill h-full"
           />
         </div>
-        <h1 className="text-ellipsis line-clamp-2 dark:text-white">
+        <h1 className="text-ellipsis line-clamp-2 dark:text-slate-300">
           {data?.productName}
         </h1>
         <div>
-          <p className="font-semibold dark:text-white">
+          <p className="font-semibold dark:text-slate-300">
             {displayINRCurrency(data.sellingPrice)}
           </p>
           <div
-            className="w-fit ml-auto p-2 bg-green-100 dark:bg-green-800 hover:bg-green-500 dark:hover:bg-green-700 cursor-pointer rounded-full hover:text-white dark:text-white"
+            className="w-fit ml-auto p-2 bg-green-100 dark:bg-green-800 hover:bg-green-500 dark:hover:bg-green-700 cursor-pointer rounded-full hover:text-white dark:text-slate-300"
             onClick={() => {
               setEditProduct(true);
             }}

@@ -112,7 +112,7 @@ const CategoryProduct = () => {
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "asc"}
                 />
-                <label className="dark:text-white">Price - Low to High</label>
+                <label className="dark:text-slate-300">Price - Low to High</label>
               </div>
 
               <div className="flex items-center gap-3">
@@ -123,7 +123,7 @@ const CategoryProduct = () => {
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "dsc"}
                 />
-                <label className="dark:text-white">Price - High to Low</label>
+                <label className="dark:text-slate-300">Price - High to Low</label>
               </div>
             </form>
           </div>
@@ -149,7 +149,7 @@ const CategoryProduct = () => {
                       id={categoryName?.value}
                       onChange={handleSelectCategory}
                     />
-                    <label htmlFor={categoryName?.value} className="dark:text-white">
+                    <label htmlFor={categoryName?.value} className="dark:text-slate-300">
                       {categoryName?.label}
                     </label>
                   </div>
@@ -161,7 +161,7 @@ const CategoryProduct = () => {
 
         {/* right side (product) */}
         <div className="px-4">
-          <p className="font-medium text-slate-800 dark:text-white text-lg my-2">
+          <p className="font-medium text-slate-800 dark:text-slate-300 text-lg my-2">
             Search Results : {data.length}
           </p>
           <div className="min-h-[calc(100vh-120px)] max-h-[calc(100vh-120px)] overflow-y-scroll">

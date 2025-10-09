@@ -34,16 +34,16 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 pt-10 pb-6 w-full h-full z-10 flex justify-between items-center bg-slate-200 bg-opacity-50 dark:bg-slate-900 dark:bg-opacity-50">
       <div className="mx-auto w-full bg-slate-200 dark:bg-slate-800 p-4 max-w-sm">
-        <button className="block ml-auto dark:text-white" onClick={onClose}>
+        <button className="block ml-auto dark:text-slate-300" onClick={onClose}>
           <IoMdClose />
         </button>
-        <h1 className="pb-4 text-lg font-medium dark:text-white">Change User Role</h1>
-        <p className="dark:text-white">Name : {name}</p>
-        <p className="dark:text-white">Email : {email}</p>
+        <h1 className="pb-4 text-lg font-medium dark:text-slate-300">Change User Role</h1>
+        <p className="dark:text-slate-300">Name : {name}</p>
+        <p className="dark:text-slate-300">Email : {email}</p>
         <div className="flex justify-between items-center my-4">
-          <p className="dark:text-white">Role :</p>
+          <p className="dark:text-slate-300">Role :</p>
           <select
-            className="py-1 px-4 border dark:bg-slate-700 dark:text-white dark:border-slate-600"
+            className="py-1 px-4 border dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600"
             value={UserRole}
             onChange={handleOnChangeSelect}
           >
