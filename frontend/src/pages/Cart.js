@@ -109,6 +109,10 @@ const Cart = () => {
     0
   );
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="container mx-auto">
       <div className="text-center text-lg my-3">
@@ -132,15 +136,15 @@ const Cart = () => {
             : data.map((product, index) => {
                 return (
                   <div
-                    className="h-32 w-full bg-white my-2 border border-slate-300 rounded grid grid-cols-[128px,1fr]"
+                    className="h-32 w-full bg-white my-2 border dark:bg-gray-800 border-slate-300 rounded grid grid-cols-[128px,1fr]"
                     key={product?._id + index}
                   >
                     {" "}
-                    <div className="w-32 h-32 bg-slate-200">
+                    <div className="w-32 h-32 bg-slate-200 dark:bg-gray-700">
                       <img
                         src={product?.productId?.productImage[0]}
                         alt=""
-                        className="w-full h-full object-scale-down mix-blend-multiply"
+                        className="w-full h-full object-scale-down mix-blend-multiply dark:mix-blend-normal"
                       />
                     </div>
                     <div className="px-4 py-1 relative">
@@ -152,19 +156,19 @@ const Cart = () => {
                       >
                         <MdDelete />
                       </div>
-                      <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1">
+                      <h2 className="text-lg lg:text-xl text-ellipsis line-clamp-1 dark:text-slate-300">
                         {product?.productId?.productName}
                       </h2>
-                      <p className="capitalize text-slate-500">
+                      <p className="capitalize text-slate-500 dark:text-gray-400">
                         {product?.productId?.category}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <p className="text-red-600 font-medium text-lg">
+                        <p className="text-red-600 font-medium text-lg dark:text-slate-400">
                           {displayINRCurrency(product?.productId?.sellingPrice)}
                         </p>
 
-                        <p className="text-slate-600 font-semibold text-lg">
+                        <p className="text-slate-600 font-semibold text-lg  dark:text-slate-300">
                           {displayINRCurrency(
                             product?.productId?.sellingPrice * product?.quantity
                           )}

@@ -32,7 +32,6 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="hover:underline">Home</Link></li>
-              <li><Link to="/products" className="hover:underline">Products</Link></li>
               <li><Link to="/cart" className="hover:underline">Cart</Link></li>
               <li><Link to="/about" className="hover:underline">About Us</Link></li>
               <li><Link to="/contact" className="hover:underline">Contact</Link></li>
@@ -43,21 +42,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Categories</h3>
             <ul className="space-y-2">
-              <li><Link to="/category/electronics" className="hover:underline">Electronics</Link></li>
-              <li><Link to="/category/clothing" className="hover:underline">Clothing</Link></li>
-              <li><Link to="/category/home" className="hover:underline">Home & Kitchen</Link></li>
-              <li><Link to="/category/books" className="hover:underline">Books</Link></li>
-              <li><Link to="/category/toys" className="hover:underline">Toys & Games</Link></li>
+              <li><Link to="/product-category?category=mobiles" className="hover:underline">Mobile</Link></li>
+              <li><Link to="/product-category?category=camera" className="hover:underline">Camera</Link></li>
+              <li><Link to="/product-category?category=trimmers" className="hover:underline">Trimmer</Link></li>
+              <li><Link to="/product-category?category=Mouses" className="hover:underline">Mouse</Link></li>
+              <li><Link to="/product-category?category=watches" className="hover:underline">Watch</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="mb-2">123 Shopping Street</p>
-            <p className="mb-2">City, State 12345</p>
-            <p className="mb-2">Phone: (123) 456-7890</p>
-            <p className="mb-2">Email: info@shopname.com</p>
+            <p className="mb-2">Shopping Street, Main Road</p>
+            <p className="mb-2">Ban, Kar 859426</p>
+            <p className="mb-2">Phone: (843) 591-4388</p>
+            <p className="mb-2">Email: info@nopaycart.com</p>
           </div>
         </div>
 

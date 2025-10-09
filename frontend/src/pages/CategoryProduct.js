@@ -91,6 +91,10 @@ const CategoryProduct = () => {
 
   useEffect(() => {}, [sortBy]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
       {/* desktop version */}
@@ -112,7 +116,9 @@ const CategoryProduct = () => {
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "asc"}
                 />
-                <label className="dark:text-slate-300">Price - Low to High</label>
+                <label className="dark:text-slate-300">
+                  Price - Low to High
+                </label>
               </div>
 
               <div className="flex items-center gap-3">
@@ -123,7 +129,9 @@ const CategoryProduct = () => {
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "dsc"}
                 />
-                <label className="dark:text-slate-300">Price - High to Low</label>
+                <label className="dark:text-slate-300">
+                  Price - High to Low
+                </label>
               </div>
             </form>
           </div>
@@ -149,7 +157,10 @@ const CategoryProduct = () => {
                       id={categoryName?.value}
                       onChange={handleSelectCategory}
                     />
-                    <label htmlFor={categoryName?.value} className="dark:text-slate-300">
+                    <label
+                      htmlFor={categoryName?.value}
+                      className="dark:text-slate-300"
+                    >
                       {categoryName?.label}
                     </label>
                   </div>
