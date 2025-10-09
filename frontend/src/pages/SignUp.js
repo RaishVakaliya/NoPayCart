@@ -118,6 +118,7 @@ const SignUp = () => {
                 value={data.name}
                 onChange={handleOnChange}
                 className="input-mail"
+                autoComplete="off"
               />
             </div>
 
@@ -130,6 +131,7 @@ const SignUp = () => {
                 value={data.email}
                 onChange={handleOnChange}
                 className="input-mail"
+                autoComplete="off"
               />
             </div>
 

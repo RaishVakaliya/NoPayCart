@@ -71,6 +71,7 @@ const Login = () => {
                 value={data.email}
                 onChange={handleOnChange}
                 className="input-mail"
+                autoComplete="off"
               />
               <span> </span>
             </div>

@@ -262,6 +262,7 @@ const ProductDetails = () => {
         <CategoryWiseProductDisplay
           category={data?.category}
           heading={"Recommended Product"}
+          excludeProductId={data?._id}
         />
       )}
     </div>

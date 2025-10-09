@@ -112,12 +112,12 @@ const Header = () => {
               </div>
             )}
             {menuDisplay && (
-              <div className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-black">
+              <div className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-slate-900">
                 <nav>
                   {user?.role === ROLE.ADMIN && (
                     <Link
                       to={"/admin-panel/all-products"}
-                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2"
+                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 dark:hover:text-slate-300 dark:hover:bg-slate-800"
                       onClick={() => {
                         setmenuDisplay((preve) => !preve);
                       }}

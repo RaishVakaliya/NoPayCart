@@ -10,10 +10,16 @@ const CategoryList = () => {
 
   const fetchCategoryproduct = async () => {
     setloading(true);
-    const response = await fetch(SummaryApi.categoryProduct.url);
-    const dataResponse = await response.json();
-    setloading(false);
-    setcategoryProduct(dataResponse.data);
+    try {
+      const response = await fetch(SummaryApi.categoryProduct.url);
+      const dataResponse = await response.json();
+      setloading(false);
+      setcategoryProduct(dataResponse?.data || []);
+    } catch (error) {
+      console.error("Error fetching category products:", error);
+      setloading(false);
+      setcategoryProduct([]);
+    }
   };
 
   useEffect(() => {
@@ -32,7 +38,7 @@ const CategoryList = () => {
                 ></div>
               );
             })
-          : categoryProduct.map((product, index) => {
+          : (categoryProduct || []).map((product, index) => {
               return (
                 <Link
                   to={"/product-category?category=" + product.category}
@@ -46,7 +52,7 @@ const CategoryList = () => {
                       className="h-full object-scale-down mix-blend-multiply transition-all hover:scale-125"
                     />
                   </div>
-                  <p className="text-center text-sm md:text-base capitalize">
+                  <p className="text-center text-sm md:text-base capitalize dark:text-slate-300">
                     {product?.category}
                   </p>
                 </Link>

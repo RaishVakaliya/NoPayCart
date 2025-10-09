@@ -47,6 +47,52 @@
   line-height: 1.25rem;
   width: 250px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  color: #000;
+}
+
+/* Dark mode styles for input text visibility */
+:root.dark .input-container input {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+:root.dark .input-container input::placeholder {
+  color: #666 !important;
+}
+
+/* Alternative selector for dark mode */
+html.dark .input-container input {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+html.dark .input-container input::placeholder {
+  color: #666 !important;
+}
+
+/* Additional dark mode input styles */
+.dark .input-mail,
+.dark .input-pwd {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.dark .input-mail::placeholder,
+.dark .input-pwd::placeholder {
+  color: #666 !important;
+}
+
+/* Dark mode styles for eye icon visibility */
+:root.dark .cursor-pointer,
+html.dark .cursor-pointer,
+.dark .cursor-pointer {
+  color: #333 !important;
+}
+
+:root.dark .cursor-pointer svg,
+html.dark .cursor-pointer svg,
+.dark .cursor-pointer svg {
+  color: #333 !important;
 }
 
 .input-mail:focus::placeholder {
