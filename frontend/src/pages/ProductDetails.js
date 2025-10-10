@@ -33,27 +33,49 @@ const ProductDetails = () => {
 
   const navigate = useNavigate();
 
-  const fetchProductDetails = async () => {
-    setloading(true);
-    const response = await fetch(SummaryApi.productDetails.url, {
-      method: SummaryApi.productDetails.method,
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        productId: params?.id,
-      }),
-    });
-    setloading(false);
-    const dataResponse = await response.json();
+  // const fetchProductDetails = async () => {
+  //   setloading(true);
+  //   const response = await fetch(SummaryApi.productDetails.url, {
+  //     method: SummaryApi.productDetails.method,
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       productId: params?.id,
+  //     }),
+  //   });
+  //   setloading(false);
+  //   const dataResponse = await response.json();
 
-    setdata(dataResponse?.data);
-    setactiveImage(dataResponse?.data?.productImage[0]);
-  };
+  //   setdata(dataResponse?.data);
+  //   setactiveImage(dataResponse?.data?.productImage[0]);
+  // };
+
+  // useEffect(() => {
+  //   fetchProductDetails();
+  // }, [params]);
 
   useEffect(() => {
+    const fetchProductDetails = async () => {
+      setloading(true);
+      const response = await fetch(SummaryApi.productDetails.url, {
+        method: SummaryApi.productDetails.method,
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: params?.id,
+        }),
+      });
+      setloading(false);
+      const dataResponse = await response.json();
+
+      setdata(dataResponse?.data);
+      setactiveImage(dataResponse?.data?.productImage[0]);
+    };
+
     fetchProductDetails();
-  }, [params]);
+  }, [params.id]);
 
   const handleMouseEnterProduct = (imageURL) => {
     setactiveImage(imageURL);
@@ -165,8 +187,12 @@ const ProductDetails = () => {
           // loading state
           <div className="flex flex-col gap-1.5">
             <p className="bg-slate-200 animate-pulse h-6 w-full rounded-full"></p>
-            <h2 className="bg-slate-200 animate-pulse h-6 w-full rounded-full">&nbsp;</h2>
-            <p className="bg-slate-200 animate-pulse min-w-[100px] h-6 rounded-full">&nbsp;</p>
+            <h2 className="bg-slate-200 animate-pulse h-6 w-full rounded-full">
+              &nbsp;
+            </h2>
+            <p className="bg-slate-200 animate-pulse min-w-[100px] h-6 rounded-full">
+              &nbsp;
+            </p>
             <div className="flex bg-slate-200 h-6 animate-pulse rounded-full"></div>
 
             <div className="flex gap-2 my-1 h-6 animate-pulse">

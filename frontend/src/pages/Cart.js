@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import SummaryApi from "../common";
 import Context from "../context";
 import displayINRCurrency from "../helpers/displayCurrency";
@@ -11,7 +11,7 @@ const Cart = () => {
   const context = useContext(Context);
   const loadingCart = new Array(context.ProductCount).fill(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback( async () => {
     const response = await fetch(SummaryApi.viewCartProduct.url, {
       method: SummaryApi.viewCartProduct.method,
       credentials: "include",
@@ -25,17 +25,17 @@ const Cart = () => {
     if (responseData.success) {
       setdata(responseData.data);
     }
-  };
+  },[]);
 
-  const handleLoading = async () => {
+  const handleLoading = useCallback(async () => {
     await fetchData();
-  };
+  }, [fetchData]);
 
   useEffect(() => {
     setloading(true);
     handleLoading();
     setloading(false);
-  }, []);
+  }, [handleLoading]);
 
   const increaseQty = async (id, qty) => {
     const response = await fetch(SummaryApi.updateCartProduct.url, {
@@ -117,7 +117,9 @@ const Cart = () => {
     <div className="container mx-auto">
       <div className="text-center text-lg my-3">
         {data.length === 0 && !loading && (
-          <p className="py-5 bg-white dark:text-gray-500">no Product added in Cart</p>
+          <p className="py-5 bg-white dark:text-gray-500">
+            no Product added in Cart
+          </p>
         )}
       </div>
 
