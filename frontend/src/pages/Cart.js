@@ -136,7 +136,7 @@ const Cart = () => {
             : data.map((product, index) => {
                 return (
                   <div
-                    className="h-32 w-full bg-white my-2 border dark:bg-gray-800 border-slate-300 rounded grid grid-cols-[128px,1fr]"
+                    className="h-32 w-full bg-white my-2 border dark:bg-gray-900 border-none grid grid-cols-[128px,1fr]"
                     key={product?._id + index}
                   >
                     {" "}

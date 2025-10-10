@@ -21,7 +21,7 @@ const SearchVerticalCard = ({ loading, data = [] }) => {
         ? loadingList.map((product, index) => {
             return (
               <div
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] bg-white dark:bg-gray-800 rounded-sm shadow"
+                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] bg-white dark:bg-gray-900 rounded-sm shadow"
                 key={"product" + index}
               >
                 <div className="bg-slate-300 dark:bg-gray-700 h-48 p-4 min-w-[120px] md:min-w-[145px] flex justify-center items-center animate-pulse"></div>
@@ -63,7 +63,7 @@ const SearchVerticalCard = ({ loading, data = [] }) => {
             return (
               <Link
                 to={"/product/" + product?._id}
-                className="w-full min-w-[280px] md:min-w-[300px] max-w-[280px] md:max-w-[300px] bg-white dark:bg-gray-800 rounded-sm shadow"
+                className="w-full min-w-[280px] md:min-w-[300px] max-w-[280px] md:max-w-[300px] bg-white dark:bg-gray-900 rounded-sm shadow"
                 key={"product" + index}
                 onClick={scrollTop}
               >

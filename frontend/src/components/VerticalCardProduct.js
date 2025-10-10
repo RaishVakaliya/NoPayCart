@@ -110,7 +110,7 @@ const VerticalCardProduct = ({ category, heading, excludeProductId }) => {
             return (
               <Link
                 to={"product/" + product?._id}
-                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-800  bg-white rounded-sm shadow"
+                className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-900  bg-white rounded-sm shadow"
                 key={"product" + index}
               >
                 <div className="bg-slate-300 h-48 p-4 min-w-[120px] md:min-w-[145px] dark:bg-gray-700 flex justify-center items-center">

@@ -115,7 +115,7 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
                 <Link
                   to={"product/" + product?._id}
                   key={"product" + index}
-                  className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-800 h-36 bg-white rounded-sm shadow-md flex"
+                  className="w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] dark:bg-gray-900 h-36 bg-white rounded-sm shadow-md flex"
                 >
                   <div className="bg-slate-300 dark:bg-gray-700 h-full p-4 min-w-[120px] md:min-w-[145px]">
                     <img
