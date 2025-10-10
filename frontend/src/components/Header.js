@@ -95,7 +95,7 @@ const Header = () => {
           <div className="relative flex justify-center">
             {user?._id && (
               <div
-                className="text-3xl cursor-pointer relative flex justify-center"
+                className="text-3xl cursor-pointer relative flex justify-center text-slate-700 dark:text-slate-300"
                 onClick={() => {
                   setmenuDisplay((preve) => !preve);
                 }}
@@ -103,7 +103,7 @@ const Header = () => {
                 {user?.profilePic ? (
                   <img
                     src={user.profilePic}
-                    className="w-10 h-10 rounded-full"
+                    className="w-10 h-10 rounded-full ring-1 ring-slate-200 dark:ring-slate-700"
                     alt={user?.name}
                   />
                 ) : (
@@ -112,12 +112,12 @@ const Header = () => {
               </div>
             )}
             {menuDisplay && (
-              <div className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-slate-900">
+              <div className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100">
                 <nav>
                   {user?.role === ROLE.ADMIN && (
                     <Link
                       to={"/admin-panel/all-products"}
-                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 dark:hover:text-slate-300 dark:hover:bg-slate-800"
+                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded dark:hover:text-slate-200 dark:hover:bg-slate-800"
                       onClick={() => {
                         setmenuDisplay((preve) => !preve);
                       }}

@@ -85,12 +85,12 @@ const UploadProduct = ({ onClose, fetchData }) => {
   };
 
   return (
-    <div className="fixed w-full h-full bg-slate-200 bg-opacity-25 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
-      <div className="bg-white p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
+    <div className="fixed w-full h-full bg-slate-200 bg-opacity-25 dark:bg-slate-950 dark:bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
+      <div className="bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
         <div className="flex justify-between items-center pb-3">
           <h2 className="font-bold text-lg">Uoload Product</h2>
           <div
-            className="w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer"
+            className="w-fit ml-auto text-2xl hover:text-red-600 dark:hover:text-red-400 cursor-pointer text-slate-700 dark:text-slate-300"
             onClick={onClose}
           >
             <AiOutlineClose />
@@ -101,7 +101,12 @@ const UploadProduct = ({ onClose, fetchData }) => {
           className="grid p-4 gap-3 overflow-y-scroll h-full pb-5"
           onSubmit={handleSubmit}
         >
-          <label htmlFor="productName">Product Name :</label>
+          <label
+            htmlFor="productName"
+            className="text-slate-700 dark:text-slate-200"
+          >
+            Product Name :
+          </label>
           <input
             type="text"
             id="productName"
@@ -110,10 +115,13 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="productName"
             value={data.productName}
             onChange={handleOnChange}
-            className="p-2 bg-slate-100 border rounded"
+            className="p-2 bg-slate-100 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
           />
 
-          <label htmlFor="brandName" className="mt-3">
+          <label
+            htmlFor="brandName"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Brand Name :
           </label>
           <input
@@ -124,17 +132,20 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="brandName"
             value={data.brandName}
             onChange={handleOnChange}
-            className="p-2 bg-slate-100 border rounded"
+            className="p-2 bg-slate-100 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
           />
 
-          <label htmlFor="category" className="mt-3">
+          <label
+            htmlFor="category"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Category :
           </label>
           <select
             name="category"
             required
             value={data.category}
-            className="p-2 bg-slate-100 border rounded"
+            className="p-2 bg-slate-100 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100"
             onChange={handleOnChange}
           >
             <option value={""}>Select Category</option>
@@ -147,12 +158,15 @@ const UploadProduct = ({ onClose, fetchData }) => {
             })}
           </select>
 
-          <label htmlFor="productImage" className="mt-3">
+          <label
+            htmlFor="productImage"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Product Image :
           </label>
           <label htmlFor="uploadImageInput">
-            <div className="p-2 bg-slate-100 border rounded h-48 w-full flex justify-center items-center cursor-pointer">
-              <div className="text-slate-500 flex justify-center items-center flex-col gap-2">
+            <div className="p-2 bg-slate-100 border rounded h-48 w-full flex justify-center items-center cursor-pointer dark:bg-slate-700 dark:border-slate-600">
+              <div className="text-slate-500 dark:text-slate-300 flex justify-center items-center flex-col gap-2">
                 <span className="text-4xl">
                   <MdCloudUpload />
                 </span>
@@ -177,7 +191,7 @@ const UploadProduct = ({ onClose, fetchData }) => {
                         alt={el}
                         width={80}
                         height={80}
-                        className="bg-slate-100 border cursor-pointer"
+                        className="bg-slate-100 border cursor-pointer dark:bg-slate-700 dark:border-slate-600"
                         onClick={() => {
                           setopenFullScreenImage(true);
                           setfullScreenImage(el);
@@ -196,13 +210,16 @@ const UploadProduct = ({ onClose, fetchData }) => {
                 })}
               </div>
             ) : (
-              <p className="text-xs text-red-700">
+              <p className="text-xs text-red-700 dark:text-red-400">
                 *Please upload product image
               </p>
             )}
           </div>
 
-          <label htmlFor="price" className="mt-3">
+          <label
+            htmlFor="price"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Price :
           </label>
           <input
@@ -213,10 +230,13 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="price"
             value={data.price}
             onChange={handleOnChange}
-            className="p-2 bg-slate-100 border rounded"
+            className="p-2 bg-slate-100 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
           />
 
-          <label htmlFor="sellingPrice" className="mt-3">
+          <label
+            htmlFor="sellingPrice"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Selling Price :
           </label>
           <input
@@ -227,14 +247,17 @@ const UploadProduct = ({ onClose, fetchData }) => {
             name="sellingPrice"
             value={data.sellingPrice}
             onChange={handleOnChange}
-            className="p-2 bg-slate-100 border rounded"
+            className="p-2 bg-slate-100 border rounded dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
           />
 
-          <label htmlFor="description" className="mt-3">
+          <label
+            htmlFor="description"
+            className="mt-3 text-slate-700 dark:text-slate-200"
+          >
             Description :
           </label>
           <textarea
-            className="h-28 bg-slate-100 border resize-none p-1"
+            className="h-28 bg-slate-100 border resize-none p-1 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-400"
             placeholder="enter product description"
             rows={3}
             name="description"

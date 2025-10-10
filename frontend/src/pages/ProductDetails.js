@@ -165,8 +165,8 @@ const ProductDetails = () => {
           // loading state
           <div className="flex flex-col gap-1.5">
             <p className="bg-slate-200 animate-pulse h-6 w-full rounded-full"></p>
-            <h2 className="bg-slate-200 animate-pulse h-6 w-full rounded-full"></h2>
-            <p className="bg-slate-200 animate-pulse min-w-[100px] h-6 rounded-full"></p>
+            <h2 className="bg-slate-200 animate-pulse h-6 w-full rounded-full">&nbsp;</h2>
+            <p className="bg-slate-200 animate-pulse min-w-[100px] h-6 rounded-full">&nbsp;</p>
             <div className="flex bg-slate-200 h-6 animate-pulse rounded-full"></div>
 
             <div className="flex gap-2 my-1 h-6 animate-pulse">

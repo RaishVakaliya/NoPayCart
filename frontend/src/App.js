@@ -2,10 +2,10 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Flip, ToastContainer, toast } from "react-toastify";
+import { Flip, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SummaryApi from "./common";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Context from "./context";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "./store/userSlice";
@@ -28,7 +28,7 @@ function App() {
     }
   };
 
-  const fetchUserDetails = async () => {
+  const fetchUserDetails = useCallback(async () => {
     const dataResponse = await fetch(SummaryApi.current_user.url, {
       method: SummaryApi.current_user.method,
       credentials: "include",
@@ -40,9 +40,9 @@ function App() {
       dispatch(setUserDetails(dataApi.data));
     }
     // console.log("dataApi", dataApi);
-  };
+  }, [dispatch]);
 
-  const fetchUserAddToCart = async () => {
+  const fetchUserAddToCart = useCallback(async () => {
     const dataResponse = await fetch(SummaryApi.CartProductCount.url, {
       method: SummaryApi.CartProductCount.method,
       credentials: "include",
@@ -51,7 +51,7 @@ function App() {
     const dataApi = await dataResponse.json();
 
     setProductCount(dataApi?.data?.count); //this count is come from user controller->CountCartProduct
-  };
+  }, []);
 
   useEffect(() => {
     /* user details */
@@ -65,7 +65,7 @@ function App() {
     } else {
       document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, [fetchUserDetails, fetchUserAddToCart, theme]);
 
   return (
     <>

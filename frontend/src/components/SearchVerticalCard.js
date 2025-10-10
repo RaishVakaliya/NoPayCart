@@ -26,8 +26,8 @@ const SearchVerticalCard = ({ loading, data = [] }) => {
               >
                 <div className="bg-slate-300 dark:bg-gray-700 h-48 p-4 min-w-[120px] md:min-w-[145px] flex justify-center items-center animate-pulse"></div>
                 <div className="p-4 grid gap-3">
-                  <h2 className="font-medium text-base md:text-lg text-ellipsis py-2 line-clamp-1 text-black dark:text-slate-300 animate-pulse p-1 rounded-full bg-slate-200 dark:bg-gray-700"></h2>
-                  <p className="capitalize text-slate-500 dark:text-gray-400 animate-pulse py-2 p-1 rounded-full bg-slate-200 dark:bg-gray-700"></p>
+                  <h2 className="font-medium text-base md:text-lg text-ellipsis py-2 line-clamp-1 text-black dark:text-slate-300 animate-pulse p-1 rounded-full bg-slate-200 dark:bg-gray-700">&nbsp;</h2>
+                  <p className="capitalize text-slate-500 dark:text-gray-400 animate-pulse py-2 p-1 rounded-full bg-slate-200 dark:bg-gray-700">&nbsp;</p>
                   <div className="flex gap-3">
                     <p className="text-red-600 font-medium py-2 animate-pulse p-1 rounded-full bg-slate-200 dark:bg-gray-700 w-full"></p>
                     <p className="text-slate-500 dark:text-gray-400 line-through py-2 animate-pulse p-1 rounded-full bg-slate-200 dark:bg-gray-700 w-full"></p>

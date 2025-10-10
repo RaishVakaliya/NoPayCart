@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import productCategory from "../helpers/productCategory";
 import SearchVerticalCard from "../components/SearchVerticalCard";
@@ -6,10 +6,11 @@ import SummaryApi from "../common";
 
 const CategoryProduct = () => {
   const [data, setdata] = useState([]);
-  const [loading, setloading] = useState(false);
   const [filterCategoryList, setfilterCategoryList] = useState([]);
   const location = useLocation();
   const navigate = useNavigate();
+
+  // get category list from URL
   const urlSearch = new URLSearchParams(location.search);
   const urlCategoryListinArray = urlSearch.getAll("category");
   const urlCategoryListObject = {};
@@ -20,36 +21,39 @@ const CategoryProduct = () => {
 
   const [sortBy, setSortBy] = useState("");
 
-  const fetchData = async () => {
-    const response = await fetch(SummaryApi.filterProduct.url, {
-      method: SummaryApi.filterProduct.method,
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        category: filterCategoryList,
-      }),
-    });
+  // ✅ Wrapped in useCallback to avoid dependency warnings
+  const fetchData = useCallback(async () => {
+    try {
+      const response = await fetch(SummaryApi.filterProduct.url, {
+        method: SummaryApi.filterProduct.method,
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          category: filterCategoryList,
+        }),
+      });
 
-    const dataResponse = await response.json();
-
-    setdata(dataResponse?.data || []);
-  };
+      const dataResponse = await response.json();
+      setdata(dataResponse?.data || []);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }, [filterCategoryList]);
 
   const handleSelectCategory = (e) => {
-    const { name, value, checked } = e.target;
+    const { value, checked } = e.target;
 
-    setSelectCategory((preve) => {
-      return {
-        ...preve,
-        [value]: checked,
-      };
-    });
+    setSelectCategory((preve) => ({
+      ...preve,
+      [value]: checked,
+    }));
   };
 
+  // ✅ no dependency warning now
   useEffect(() => {
     fetchData();
-  }, [filterCategoryList]);
+  }, [fetchData]);
 
   useEffect(() => {
     const arrayOfCategory = Object.keys(selectCategory)
@@ -63,33 +67,28 @@ const CategoryProduct = () => {
 
     setfilterCategoryList(arrayOfCategory);
 
-    // formart for url change when change on the checkbox
-    const urlFormat = arrayOfCategory.map((el, index) => {
-      if (arrayOfCategory.length - 1 === index) {
-        return `category=${el}`;
-      }
+    // format URL query params
+    const urlFormat = arrayOfCategory
+      .map((el, index) =>
+        arrayOfCategory.length - 1 === index ? `category=${el}` : `category=${el}&&`
+      )
+      .join("");
 
-      return `category=${el}&&`;
-    });
-
-    navigate("/product-category?" + urlFormat.join(""));
-  }, [selectCategory]);
+    navigate("/product-category?" + urlFormat);
+  }, [selectCategory, navigate]);
 
   const handleOnChangeSortBy = (e) => {
     const { value } = e.target;
-
     setSortBy(value);
 
     if (value === "asc") {
-      setdata((preve) => preve.sort((a, b) => a.sellingPrice - b.sellingPrice));
+      setdata((preve) => [...preve].sort((a, b) => a.sellingPrice - b.sellingPrice));
     }
 
     if (value === "dsc") {
-      setdata((preve) => preve.sort((a, b) => b.sellingPrice - a.sellingPrice));
+      setdata((preve) => [...preve].sort((a, b) => b.sellingPrice - a.sellingPrice));
     }
   };
-
-  useEffect(() => {}, [sortBy]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -112,7 +111,7 @@ const CategoryProduct = () => {
                 <input
                   type="radio"
                   name="sortBy"
-                  value={"asc"}
+                  value="asc"
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "asc"}
                 />
@@ -125,7 +124,7 @@ const CategoryProduct = () => {
                 <input
                   type="radio"
                   name="sortBy"
-                  value={"dsc"}
+                  value="dsc"
                   onChange={handleOnChangeSortBy}
                   checked={sortBy === "dsc"}
                 />
@@ -143,29 +142,21 @@ const CategoryProduct = () => {
             </h3>
 
             <form className="text-sm flex flex-col gap-2 py-2">
-              {productCategory.map((categoryName, index) => {
-                return (
-                  <div
-                    className="flex items-center gap-3"
-                    key={categoryName + index}
-                  >
-                    <input
-                      type="checkbox"
-                      name={"category"}
-                      value={categoryName?.value}
-                      checked={selectCategory[categoryName?.value]}
-                      id={categoryName?.value}
-                      onChange={handleSelectCategory}
-                    />
-                    <label
-                      htmlFor={categoryName?.value}
-                      className="dark:text-slate-300"
-                    >
-                      {categoryName?.label}
-                    </label>
-                  </div>
-                );
-              })}
+              {productCategory.map((categoryName, index) => (
+                <div className="flex items-center gap-3" key={categoryName?.value + index}>
+                  <input
+                    type="checkbox"
+                    name="category"
+                    value={categoryName?.value}
+                    checked={!!selectCategory[categoryName?.value]}
+                    id={categoryName?.value}
+                    onChange={handleSelectCategory}
+                  />
+                  <label htmlFor={categoryName?.value} className="dark:text-slate-300">
+                    {categoryName?.label}
+                  </label>
+                </div>
+              ))}
             </form>
           </div>
         </div>
@@ -177,7 +168,7 @@ const CategoryProduct = () => {
           </p>
           <div className="min-h-[calc(100vh-120px)] max-h-[calc(100vh-120px)] overflow-y-scroll">
             {data.length !== 0 && (
-              <SearchVerticalCard data={data} loading={loading} />
+              <SearchVerticalCard data={data} loading={false} />
             )}
           </div>
         </div>

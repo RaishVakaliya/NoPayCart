@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
 import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
 import "./CartBtn.css";
@@ -21,7 +21,7 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
     fetchUserAddToCart();
   };
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setloading(true);
     const categoryProduct = await fetchCategoryWiseProduct(category);
     setloading(false);
@@ -32,11 +32,11 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
         ) || []
       : categoryProduct?.data || [];
     setdata(filteredData);
-  };
+  },[category, excludeProductId]);
 
   useEffect(() => {
     fetchData();
-  }, [category, excludeProductId]);
+  }, [fetchData]);
 
   const scrollRight = () => {
     scrollElement.current.scrollLeft += 300;
@@ -76,8 +76,8 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
                 >
                   <div className="bg-slate-300 h-full p-4 min-w-[120px] md:min-w-[145px] animate-pulse"></div>
                   <div className="p-4 grid w-full gap-2">
-                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black bg-slate-200 animate-pulse rounded-full p-1"></h2>
-                    <p className="capitalize text-slate-500 p-1 bg-slate-200 animate-pulse rounded-full"></p>
+                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black bg-slate-200 animate-pulse rounded-full p-1">&nbsp;</h2>
+                    <p className="capitalize text-slate-500 p-1 bg-slate-200 animate-pulse rounded-full">&nbsp;</p>
                     <div className="flex gap-3 w-full">
                       <p className="text-red-600 font-medium p-1 bg-slate-200 w-full animate-pulse rounded-full"></p>
                       <p className="text-slate-500 line-through p-1 bg-slate-200 w-full animate-pulse rounded-full"></p>
