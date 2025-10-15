@@ -29,17 +29,24 @@ function App() {
   };
 
   const fetchUserDetails = useCallback(async () => {
-    const dataResponse = await fetch(SummaryApi.current_user.url, {
-      method: SummaryApi.current_user.method,
-      credentials: "include",
-    });
+    try {
+      const dataResponse = await fetch(SummaryApi.current_user.url, {
+        method: SummaryApi.current_user.method,
+        credentials: "include",
+      });
 
-    const dataApi = await dataResponse.json();
+      const dataApi = await dataResponse.json();
+      console.log("fetchUserDetails response:", dataApi);
 
-    if (dataApi.success) {
-      dispatch(setUserDetails(dataApi.data));
+      if (dataApi.success) {
+        dispatch(setUserDetails(dataApi.data));
+        console.log("User details set:", dataApi.data);
+      } else {
+        console.log("Failed to fetch user details:", dataApi.message);
+      }
+    } catch (error) {
+      console.error("Error fetching user details:", error);
     }
-    // console.log("dataApi", dataApi);
   }, [dispatch]);
 
   const fetchUserAddToCart = useCallback(async () => {

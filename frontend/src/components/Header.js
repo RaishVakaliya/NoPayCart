@@ -23,7 +23,7 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setsearch] = useState(searchQuery);
-  // console.log("user header", user);
+  console.log("Header - user state:", user);
 
   // console.log("searchInput", searchInput?.search.split("=")[1]);
 

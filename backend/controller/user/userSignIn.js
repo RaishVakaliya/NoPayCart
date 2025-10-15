@@ -33,7 +33,10 @@ async function userSignIncontroller(req, res) {
 
       const tokenOption = {
         httpOnly: true,
-        secure: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'none',
+        maxAge: 8 * 60 * 60 * 1000, // 8 hours in milliseconds
+        path: '/',
       };
 
       res.cookie("token", token, tokenOption).status(200).json({

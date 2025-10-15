@@ -43,8 +43,11 @@ const Login = () => {
     if (dataApi.success) {
       toast.success(dataApi.message);
       navigate("/");
-      fetchUserDetails();
-      fetchUserAddToCart();
+      // Add small delay to ensure cookie is set before fetching user details
+      setTimeout(() => {
+        fetchUserDetails();
+        fetchUserAddToCart();
+      }, 100);
     }
     if (dataApi.error) {
       toast.error(dataApi.message);
@@ -100,13 +103,6 @@ const Login = () => {
                 </div>
               </div>
             </div>
-
-            {/* <Link
-              to={"/forgot-password"}
-              className="signup-link up block w-fit ml-auto hover:underline hover:text-red-400"
-            >
-              forgot password?
-            </Link> */}
             <div className="pt-2">
               <button className="submit" type="submit">
                 <span className="sign-text">Sign in</span>
