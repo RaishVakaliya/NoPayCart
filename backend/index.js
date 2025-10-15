@@ -12,6 +12,8 @@ app.use(
     credentials: true,
   })
 );
+console.log("CORS allowed origin:", process.env.FRONTEND_URL);
+
 app.use(express.json());
 app.use(cookieParser());
 
