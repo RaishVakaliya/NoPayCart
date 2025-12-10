@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "name": "no-pay-cart-backend",
+    "builds": [
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
+        }
+    ]
+}

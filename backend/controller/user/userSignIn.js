@@ -35,7 +35,7 @@ async function userSignIncontroller(req, res) {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 8 * 60 * 60 * 1000, // 8 hours in milliseconds
+        maxAge: 7 * 24 * 60 * 60 * 1000,
         path: "/",
       };
 

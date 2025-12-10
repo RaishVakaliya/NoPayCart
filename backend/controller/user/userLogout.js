@@ -1,14 +1,14 @@
 async function userLogout(req, res) {
   try {
-    const cookieOptions = {
+    const tokenOption = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'none',
-      maxAge: 8 * 60 * 60 * 1000, // 8 hours in milliseconds
-      path: '/',
+      secure: true,
+      sameSite: "none",
+      path: "/",
     };
-    
-    res.clearCookie("token", cookieOptions);
+
+    res.clearCookie("token", tokenOption);
+
     res.json({
       message: "Logged out successfully",
       error: false,
@@ -18,8 +18,8 @@ async function userLogout(req, res) {
   } catch (err) {
     res.json({
       message: err.message || err,
-      error: false,
-      success: true,
+      error: true,
+      success: false,
     });
   }
 }

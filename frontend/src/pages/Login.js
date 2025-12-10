@@ -29,28 +29,38 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const dataResponse = await fetch(SummaryApi.signIn.url, {
-      method: SummaryApi.signIn.method,
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const dataResponse = await fetch(SummaryApi.signIn.url, {
+        method: SummaryApi.signIn.method,
+        credentials: "include", // Required for cookies to be sent/received
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const dataApi = await dataResponse.json();
+      const dataApi = await dataResponse.json();
 
-    if (dataApi.success) {
-      toast.success(dataApi.message);
-      navigate("/");
-      // Add small delay to ensure cookie is set before fetching user details
-      setTimeout(() => {
-        fetchUserDetails();
-        fetchUserAddToCart();
-      }, 100);
-    }
-    if (dataApi.error) {
-      toast.error(dataApi.message);
+      if (dataApi.success) {
+        toast.success(dataApi.message);
+        
+        // Wait for cookie to be set and synced before navigation
+        // This ensures the cookie is properly stored before making subsequent requests
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        
+        // Fetch user details before navigation to ensure cookie is working
+        await fetchUserDetails();
+        await fetchUserAddToCart();
+        
+        // Navigate after ensuring cookie is set and user data is fetched
+        navigate("/");
+      }
+      if (dataApi.error) {
+        toast.error(dataApi.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("An error occurred during login. Please try again.");
     }
   };
 
