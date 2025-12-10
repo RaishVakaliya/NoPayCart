@@ -6,22 +6,12 @@ const router = require("./routes");
 const cookieParser = require("cookie-parser");
 
 const app = express();
-
-// Enhanced CORS configuration for cross-origin cookies
-const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  exposedHeaders: ["Set-Cookie"],
-};
-
-app.use(cors(corsOptions));
-
-// Additional middleware to handle preflight requests
-app.options("*", cors(corsOptions));
-
-console.log("CORS allowed origin:", process.env.FRONTEND_URL);
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
