@@ -37,11 +37,11 @@ function App() {
       });
 
       const dataApi = await dataResponse.json();
-      console.log("fetchUserDetails response:", dataApi);
+      // console.log("fetchUserDetails response:", dataApi);
 
       if (dataApi.success) {
         dispatch(setUserDetails(dataApi.data));
-        console.log("User details set:", dataApi.data);
+        // console.log("User details set:", dataApi.data);
       } else {
         console.log("Failed to fetch user details:", dataApi.message);
       }

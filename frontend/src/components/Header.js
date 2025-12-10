@@ -23,7 +23,7 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setsearch] = useState(searchQuery);
-  console.log("Header - user state:", user);
+  // console.log("Header - user state:", user);
 
   // console.log("searchInput", searchInput?.search.split("=")[1]);
 
@@ -84,14 +84,18 @@ const Header = () => {
 
         <div className="flex gap-7 items-center">
           {/* Theme toggle button */}
-          <button 
-            onClick={context.toggleTheme} 
+          <button
+            onClick={context.toggleTheme}
             className="text-2xl"
-            aria-label={context.theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            aria-label={
+              context.theme === "light"
+                ? "Switch to dark mode"
+                : "Switch to light mode"
+            }
           >
-            {context.theme === 'light' ? <FaMoon /> : <FaSun />}
+            {context.theme === "light" ? <FaMoon /> : <FaSun />}
           </button>
-          
+
           <div className="relative flex justify-center">
             {user?._id && (
               <div
@@ -143,12 +147,17 @@ const Header = () => {
 
           <div>
             {user?._id ? (
-              <button onClick={handleLogout} className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600">
+              <button
+                onClick={handleLogout}
+                className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600"
+              >
                 Logout
               </button>
             ) : (
               <Link to={"/login"}>
-                <button className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600">Login</button>
+                <button className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600">
+                  Login
+                </button>
               </Link>
             )}
           </div>

@@ -44,10 +44,10 @@ const Login = () => {
       toast.success(dataApi.message);
       navigate("/");
       // Add small delay to ensure cookie is set before fetching user details
-      setTimeout(() => {
-        fetchUserDetails();
-        fetchUserAddToCart();
-      }, 100);
+      // setTimeout(() => {
+      //   fetchUserDetails();
+      //   fetchUserAddToCart();
+      // }, 100);
     }
     if (dataApi.error) {
       toast.error(dataApi.message);

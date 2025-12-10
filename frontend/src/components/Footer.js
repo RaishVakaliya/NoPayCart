@@ -1,28 +1,32 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   const socialButtons = [
     {
       icon: <FaFacebook size={20} />,
-      color: 'text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300',
-      label: 'Facebook',
+      color:
+        "text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300",
+      label: "Facebook",
     },
     {
       icon: <FaTwitter size={20} />,
-      color: 'text-blue-400 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300',
-      label: 'Twitter',
+      color:
+        "text-blue-400 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300",
+      label: "Twitter",
     },
     {
       icon: <FaInstagram size={20} />,
-      color: 'text-pink-600 hover:text-pink-800 dark:text-pink-400 dark:hover:text-pink-300',
-      label: 'Instagram',
+      color:
+        "text-pink-600 hover:text-pink-800 dark:text-pink-400 dark:hover:text-pink-300",
+      label: "Instagram",
     },
     {
       icon: <FaLinkedin size={20} />,
-      color: 'text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300',
-      label: 'LinkedIn',
+      color:
+        "text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300",
+      label: "LinkedIn",
     },
   ];
 
@@ -33,14 +37,17 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-lg font-bold mb-4">NoPayCart</h3>
-            <p className="mb-4">Your one-stop destination for quality products at affordable prices.</p>
+            <p className="mb-4">
+              Your one-stop destination for quality products at affordable
+              prices.
+            </p>
             <div className="flex space-x-4">
               {socialButtons.map((btn, idx) => (
                 <button
                   key={idx}
                   type="button"
                   aria-label={btn.label}
-                  onClick={() => console.log(`${btn.label} clicked`)} // you can replace this with real link navigation
+                  onClick={() => console.log(`${btn.label} clicked`)}
                   className={`${btn.color} transition-colors duration-200`}
                 >
                   {btn.icon}
@@ -53,10 +60,26 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="hover:underline">Home</Link></li>
-              <li><Link to="/cart" className="hover:underline">Cart</Link></li>
-              <li><Link to="/about" className="hover:underline">About Us</Link></li>
-              <li><Link to="/contact" className="hover:underline">Contact</Link></li>
+              <li>
+                <Link to="/" className="hover:underline">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/cart" className="hover:underline">
+                  Cart
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:underline">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:underline">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -64,11 +87,46 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Categories</h3>
             <ul className="space-y-2">
-              <li><Link to="/product-category?category=mobiles" className="hover:underline">Mobile</Link></li>
-              <li><Link to="/product-category?category=camera" className="hover:underline">Camera</Link></li>
-              <li><Link to="/product-category?category=trimmers" className="hover:underline">Trimmer</Link></li>
-              <li><Link to="/product-category?category=Mouses" className="hover:underline">Mouse</Link></li>
-              <li><Link to="/product-category?category=watches" className="hover:underline">Watch</Link></li>
+              <li>
+                <Link
+                  to="/product-category?category=mobiles"
+                  className="hover:underline"
+                >
+                  Mobile
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/product-category?category=camera"
+                  className="hover:underline"
+                >
+                  Camera
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/product-category?category=trimmers"
+                  className="hover:underline"
+                >
+                  Trimmer
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/product-category?category=Mouses"
+                  className="hover:underline"
+                >
+                  Mouse
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/product-category?category=watches"
+                  className="hover:underline"
+                >
+                  Watch
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -83,7 +141,9 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-300 dark:border-gray-700 mt-8 pt-6">
-          <p className="text-center">&copy; {new Date().getFullYear()} NoPayCart. All rights reserved.</p>
+          <p className="text-center">
+            &copy; {new Date().getFullYear()} NoPayCart. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
