@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
-import ForgotPassword from "../pages/ForgotPassword";
 import SignUp from "../pages/SignUp";
 import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
@@ -32,10 +31,6 @@ const router = createBrowserRouter([
       {
         path: "product-category",
         element: <CategoryProduct />,
-      },
-      {
-        path: "forgot-password",
-        element: <ForgotPassword />,
       },
       {
         path: "product/:id",
