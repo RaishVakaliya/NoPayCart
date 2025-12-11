@@ -4,6 +4,7 @@ import Context from "../context";
 import displayINRCurrency from "../helpers/displayCurrency";
 import "./addRemoveBtn.css";
 import { MdDelete } from "react-icons/md";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const [data, setdata] = useState([]);
@@ -11,7 +12,7 @@ const Cart = () => {
   const context = useContext(Context);
   const loadingCart = new Array(context.ProductCount).fill(null);
 
-  const fetchData = useCallback( async () => {
+  const fetchData = useCallback(async () => {
     const response = await fetch(SummaryApi.viewCartProduct.url, {
       method: SummaryApi.viewCartProduct.method,
       credentials: "include",
@@ -25,7 +26,7 @@ const Cart = () => {
     if (responseData.success) {
       setdata(responseData.data);
     }
-  },[]);
+  }, []);
 
   const handleLoading = useCallback(async () => {
     await fetchData();
@@ -97,6 +98,83 @@ const Cart = () => {
       fetchData();
       context.fetchUserAddToCart();
     }
+  };
+
+  const handlePayment = async () => {
+    const stripePromise = await loadStripe(
+      process.env.REACT_APP_STRIPE_PUBLIC_KEY
+    );
+
+    if (!stripePromise) {
+      console.error("loadStripe returned null — check your publishable key.");
+      return;
+    }
+
+    const response = await fetch(SummaryApi.payment.url, {
+      method: SummaryApi.payment.method,
+      credentials: "include",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ cartItems: data }),
+    });
+
+    let responseData;
+    try {
+      responseData = await response.json();
+    } catch (e) {
+      console.error("Failed to parse payment API response as JSON", e);
+      return;
+    }
+
+    console.log("payment response", responseData, "status:", response.status);
+
+    if (
+      stripePromise &&
+      stripePromise.checkout &&
+      typeof stripePromise.checkout.redirectToCheckout === "function" &&
+      responseData?.id
+    ) {
+      const { error } = await stripePromise.checkout.redirectToCheckout({
+        sessionId: responseData.id,
+      });
+      if (error) {
+        console.error(
+          "stripe.checkout.redirectToCheckout returned error:",
+          error
+        );
+        // fallback to server-provided URL if available
+        if (responseData?.url) {
+          window.location.assign(responseData.url);
+        }
+      }
+      return;
+    }
+
+    if (responseData?.url) {
+      window.location.assign(responseData.url);
+      return;
+    }
+
+    if (
+      (response.status === 303 ||
+        response.status === 302 ||
+        response.status === 301) &&
+      responseData?.url
+    ) {
+      window.location.assign(responseData.url);
+      return;
+    }
+
+    // Nothing worked — show diagnostics for easier debugging
+    console.error("No redirect method found. Diagnostics:", {
+      status: response.status,
+      ok: response.ok,
+      hasStripeCheckout: !!(
+        stripePromise &&
+        stripePromise.checkout &&
+        stripePromise.checkout.redirectToCheckout
+      ),
+      responseData,
+    });
   };
 
   const totalQty = data.reduce(
@@ -222,7 +300,10 @@ const Cart = () => {
                   <p>{displayINRCurrency(totalPrice)}</p>
                 </div>
 
-                <button className="bg-blue-600 p-2 mt-2 w-full text-white">
+                <button
+                  className="bg-blue-600 p-2 mt-2 w-full text-white"
+                  onClick={handlePayment}
+                >
                   Payment
                 </button>
               </div>
