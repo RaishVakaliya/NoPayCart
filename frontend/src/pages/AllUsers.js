@@ -34,7 +34,7 @@ const AllUsers = () => {
     fetchAllUsers();
   }, []);
   return (
-    <div className="bg-white dark:bg-slate-800 pb-4">
+    <div className="bg-white dark:bg-slate-800 pb-4 overflow-x-auto shadow-md">
       <table className="w-full userTable">
         <thead>
           <tr className="bg-black text-white">

@@ -217,7 +217,7 @@ const ProductDetails = () => {
         ) : (
           // loaded state
           <div className="flex flex-col gap-1">
-            <p className="bg-red-200 text-red-600 px-2 rounded-full inline-block w-fit">
+            <p className="bg-red-200 text-red-600 px-2 rounded-lg lg:rounded-full inline-block w-fit">
               {data?.productName}
             </p>
             <h2 className="text-2xl lg:text-4xl font-medium">

@@ -15,8 +15,8 @@ const AdminPanel = () => {
   }, [user, navigate]);
 
   return (
-    <div className="min-h-[calc(100vh-120px)] md:flex hidden">
-      <aside className="bg-white dark:bg-slate-800 min-h-full w-full max-w-60 customShadow">
+    <div className="min-h-[calc(100vh-120px)] flex flex-col md:flex-row">
+      <aside className="bg-white dark:bg-slate-800 min-h-full w-full md:max-w-60 customShadow">
         <div className="h-32 flex justify-center items-center flex-col">
           <div className="text-5xl cursor-pointer relative flex justify-center dark:text-slate-300">
             {user?.profilePic ? (
@@ -41,19 +41,19 @@ const AdminPanel = () => {
           <nav className="grid">
             <Link
               to={"all-users"}
-              className="px-2 py-1 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="px-3 py-2 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               All Users
             </Link>
             <Link
               to={"all-products"}
-              className="px-2 py-1 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="px-3 py-2 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               All Products
             </Link>
             <Link
               to={"all-orders"}
-              className="px-2 py-1 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
+              className="px-3 py-2 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700"
             >
               All Orders
             </Link>

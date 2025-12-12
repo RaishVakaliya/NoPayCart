@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Logo from "./Logo";
 import { IoSearchSharp } from "react-icons/io5";
 import { PiUserCircleDuotone } from "react-icons/pi";
 import { BsCartFill } from "react-icons/bs";
 import { FaSun, FaMoon } from "react-icons/fa"; // Add these imports
+import { FiLogOut } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import SummaryApi from "../common/index";
@@ -16,6 +17,8 @@ import Context from "../context";
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const [menuDisplay, setmenuDisplay] = useState(false);
+  const menuRef = useRef(null);
+  const avatarRef = useRef(null);
   const dispatch = useDispatch();
   const context = useContext(Context);
   const navigate = useNavigate();
@@ -26,6 +29,23 @@ const Header = () => {
   // console.log("Header - user state:", user);
 
   // console.log("searchInput", searchInput?.search.split("=")[1]);
+
+  // Close profile menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuDisplay &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        avatarRef.current &&
+        !avatarRef.current.contains(event.target)
+      ) {
+        setmenuDisplay(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuDisplay]);
 
   const handleLogout = async () => {
     const fetchData = await fetch(SummaryApi.logout_user.url, {
@@ -60,8 +80,8 @@ const Header = () => {
 
   return (
     <header className="h-16 shadow-2xl bg-white dark:bg-gray-900 dark:text-slate-300 fixed w-full z-40">
-      <div className="h-full container mx-auto flex justify-between px-4 items-center">
-        <div>
+      <div className="h-full container mx-auto flex justify-between px-3 md:px-4 items-center">
+        <div className="flex items-center gap-2">
           <Link to={"/"}>
             <Logo />
           </Link>
@@ -82,7 +102,7 @@ const Header = () => {
           </div>
         </div>
 
-        <div className="flex gap-7 items-center">
+        <div className="flex items-center gap-3 md:gap-7">
           {/* Theme toggle button */}
           <button
             onClick={context.toggleTheme}
@@ -100,6 +120,7 @@ const Header = () => {
             {user?._id && (
               <div
                 className="text-3xl cursor-pointer relative flex justify-center text-slate-700 dark:text-slate-300"
+                ref={avatarRef}
                 onClick={() => {
                   setmenuDisplay((preve) => !preve);
                 }}
@@ -116,12 +137,15 @@ const Header = () => {
               </div>
             )}
             {menuDisplay && (
-              <div className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100">
+              <div
+                ref={menuRef}
+                className="absolute bottom-0 top-11 h-fit shadow-lg rounded bg-white p-2 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100"
+              >
                 <nav>
                   {user?.role === ROLE.ADMIN && (
                     <Link
                       to={"/admin-panel/all-products"}
-                      className="whitespace-nowrap hidden md:block hover:bg-slate-100 p-2 rounded dark:hover:text-slate-200 dark:hover:bg-slate-800"
+                      className="whitespace-nowrap hover:bg-slate-100 p-2 rounded dark:hover:text-slate-200 dark:hover:bg-slate-800"
                       onClick={() => {
                         setmenuDisplay((preve) => !preve);
                       }}
@@ -131,7 +155,7 @@ const Header = () => {
                   )}
                   <Link
                     to={"/order"}
-                    className="whitespace-nowrap hidden md:block hover:bg-slate-100 dark:hover:bg-slate-800 p-2"
+                    className="whitespace-nowrap hover:bg-slate-100 dark:hover:bg-slate-800 p-2 rounded"
                     onClick={() => setmenuDisplay((preve) => !preve)}
                   >
                     Order
@@ -156,9 +180,10 @@ const Header = () => {
             {user?._id ? (
               <button
                 onClick={handleLogout}
-                className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600"
+                className="StylingBtn dark:bg-gray-700 dark:hover:bg-gray-600 flex items-center gap-2 px-1 md:px-4"
               >
-                Logout
+                <FiLogOut className="text-lg md:hidden" />
+                <span className="hidden md:inline">Logout</span>
               </button>
             ) : (
               <Link to={"/login"}>
