@@ -88,7 +88,9 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
     <div className="fixed w-full h-full bg-slate-200 bg-opacity-25 dark:bg-slate-900 dark:bg-opacity-50 top-0 left-0 right-0 bottom-0 flex justify-center items-center">
       <div className="bg-white dark:bg-slate-800 p-4 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden">
         <div className="flex justify-between items-center pb-3">
-          <h2 className="font-bold text-lg dark:text-slate-300">Edit Product</h2>
+          <h2 className="font-bold text-lg dark:text-slate-300">
+            Edit Product
+          </h2>
           <div
             className="w-fit ml-auto text-2xl hover:text-red-600 cursor-pointer dark:text-slate-300 dark:hover:text-red-600"
             onClick={onClose}
@@ -174,7 +176,7 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
               <div className="flex items-center gap-2">
                 {data.productImage.map((el, index) => {
                   return (
-                    <div className="relative group">
+                    <div className="relative group" key={`${el}-${index}`}>
                       <img
                         src={el}
                         alt={el}
