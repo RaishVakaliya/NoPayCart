@@ -33,27 +33,27 @@ const ProductDetails = () => {
 
   const navigate = useNavigate();
 
-  // const fetchProductDetails = async () => {
-  //   setloading(true);
-  //   const response = await fetch(SummaryApi.productDetails.url, {
-  //     method: SummaryApi.productDetails.method,
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       productId: params?.id,
-  //     }),
-  //   });
-  //   setloading(false);
-  //   const dataResponse = await response.json();
+  const fetchProductDetails = async () => {
+    setloading(true);
+    const response = await fetch(SummaryApi.productDetails.url, {
+      method: SummaryApi.productDetails.method,
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        productId: params?.id,
+      }),
+    });
+    setloading(false);
+    const dataResponse = await response.json();
 
-  //   setdata(dataResponse?.data);
-  //   setactiveImage(dataResponse?.data?.productImage[0]);
-  // };
+    setdata(dataResponse?.data);
+    setactiveImage(dataResponse?.data?.productImage[0]);
+  };
 
-  // useEffect(() => {
-  //   fetchProductDetails();
-  // }, [params]);
+  useEffect(() => {
+    fetchProductDetails();
+  }, [params]);
 
   useEffect(() => {
     const fetchProductDetails = async () => {

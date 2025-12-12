@@ -21,7 +21,7 @@ const CategoryProduct = () => {
 
   const [sortBy, setSortBy] = useState("");
 
-  // ✅ Wrapped in useCallback to avoid dependency warnings
+  //Wrapped in useCallback to avoid dependency warnings
   const fetchData = useCallback(async () => {
     try {
       const response = await fetch(SummaryApi.filterProduct.url, {
@@ -50,7 +50,7 @@ const CategoryProduct = () => {
     }));
   };
 
-  // ✅ no dependency warning now
+  //no dependency warning now
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -70,7 +70,9 @@ const CategoryProduct = () => {
     // format URL query params
     const urlFormat = arrayOfCategory
       .map((el, index) =>
-        arrayOfCategory.length - 1 === index ? `category=${el}` : `category=${el}&&`
+        arrayOfCategory.length - 1 === index
+          ? `category=${el}`
+          : `category=${el}&&`
       )
       .join("");
 
@@ -82,11 +84,15 @@ const CategoryProduct = () => {
     setSortBy(value);
 
     if (value === "asc") {
-      setdata((preve) => [...preve].sort((a, b) => a.sellingPrice - b.sellingPrice));
+      setdata((preve) =>
+        [...preve].sort((a, b) => a.sellingPrice - b.sellingPrice)
+      );
     }
 
     if (value === "dsc") {
-      setdata((preve) => [...preve].sort((a, b) => b.sellingPrice - a.sellingPrice));
+      setdata((preve) =>
+        [...preve].sort((a, b) => b.sellingPrice - a.sellingPrice)
+      );
     }
   };
 
@@ -143,7 +149,10 @@ const CategoryProduct = () => {
 
             <form className="text-sm flex flex-col gap-2 py-2">
               {productCategory.map((categoryName, index) => (
-                <div className="flex items-center gap-3" key={categoryName?.value + index}>
+                <div
+                  className="flex items-center gap-3"
+                  key={categoryName?.value + index}
+                >
                   <input
                     type="checkbox"
                     name="category"
@@ -152,7 +161,10 @@ const CategoryProduct = () => {
                     id={categoryName?.value}
                     onChange={handleSelectCategory}
                   />
-                  <label htmlFor={categoryName?.value} className="dark:text-slate-300">
+                  <label
+                    htmlFor={categoryName?.value}
+                    className="dark:text-slate-300"
+                  >
                     {categoryName?.label}
                   </label>
                 </div>
