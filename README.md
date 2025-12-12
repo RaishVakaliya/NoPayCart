@@ -14,6 +14,8 @@ This is a full-stack e-commerce application built with the MERN stack (MongoDB, 
 - Product filtering
 - Product details view
 - Shopping cart management
+- Stripe checkout payment flow
+- Third-party cookie guidance popup for cross-origin deployments
 - Dark/light mode toggle
 - Responsive design for mobile and desktop
 
@@ -23,6 +25,7 @@ This is a full-stack e-commerce application built with the MERN stack (MongoDB, 
 - Product management (add, update, delete)
 - View all users
 - View all products
+- View all orders
 
 ## Tech Stack
 
@@ -43,5 +46,6 @@ This is a full-stack e-commerce application built with the MERN stack (MongoDB, 
 - MongoDB (with Mongoose ODM)
 - JWT Authentication
 - Bcrypt (password hashing)
+- Stripe Checkout + Webhooks
 - Cors
 - Cookie Parser
