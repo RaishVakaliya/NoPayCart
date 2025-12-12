@@ -3,8 +3,8 @@ async function userLogout(req, res) {
     const tokenOption = {
       httpOnly: true,
       secure: true,
-      // sameSite: "none",
-      // path: "/",
+      sameSite: "none",
+      path: "/",
     };
 
     res.clearCookie("token", tokenOption);
