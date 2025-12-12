@@ -39,7 +39,7 @@ const OrderPage = () => {
               <p className="font-medium text-lg ">
                 {moment(item.createdAt).format("LL")}
               </p>
-              <div className="border rounded dark:border-slate-700">
+              <div className="border rounded dark:border-slate-700 p-2">
                 <div className="flex flex-col lg:flex-row justify-between">
                   <div className="grid gap-1">
                     {item?.productDetails.map((product, index) => {

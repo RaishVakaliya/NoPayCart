@@ -138,14 +138,17 @@ const VerticalCardProduct = ({ category, heading, excludeProductId }) => {
 
                   {/* cart button */}
                   <button
-                    className="px-1.6 py-0.5"
-
+                    type="button"
+                    className="inline-flex items-center px-0 py-0 w-fit"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleAddtoCart(e, product?._id);
+                    }}
                   >
                     <div className="buttonClass">
                       <div className="button-wrapper">
-                        <div className="text" onClick={(e) => {
-                          handleAddtoCart(e, product?._id);
-                        }}>Add To Cart</div>
+                        <div className="text">Add To Cart</div>
                         <span className="icon">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"

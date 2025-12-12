@@ -23,7 +23,7 @@ const AllOrder = () => {
   }, []);
 
   return (
-    <div className="h-[calc(100vh-190px)] overflow-y-scroll">
+    <div className="h-[calc(100vh-135px)] overflow-y-scroll">
       <div className="text-center text-lg my-3 mr-2">
         {data.length === 0 && (
           <p className="py-5 bg-white dark:bg-gray-700 dark:text-white">
@@ -36,21 +36,21 @@ const AllOrder = () => {
         {data.map((item, index) => {
           return (
             <div key={item.userId + index}>
-              <p className="font-medium text-lg">
+              <p className="font-medium text-lg mt-2">
                 {moment(item.createdAt).format("LL")}
               </p>
-              <div className="border rounded p-2">
+              <div className="border rounded dark:border-slate-700 p-2">
                 <div className="flex flex-col lg:flex-row justify-between">
                   <div className="grid gap-1">
                     {item?.productDetails.map((product, index) => {
                       return (
                         <div
                           key={product.productId + index}
-                          className="flex  gap-3 bg-slate-100"
+                          className="flex  gap-3 bg-slate-100 dark:bg-slate-800"
                         >
                           <img
                             src={product.image[0]}
-                            className="w-28 h-28 bg-slate-200 object-scale-down p-2"
+                            className="w-28 h-28 bg-slate-200 dark:bg-gray-700 object-scale-down p-2"
                           />
                           <div>
                             <div className="font-medium text-lg text-ellipsis line-clamp-1">

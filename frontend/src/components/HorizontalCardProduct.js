@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import fetchCategoryWiseProduct from "../helpers/fetchCategoryWiseProduct";
 import displayINRCurrency from "../helpers/displayCurrency";
 import "./CartBtn.css";
@@ -32,7 +38,7 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
         ) || []
       : categoryProduct?.data || [];
     setdata(filteredData);
-  },[category, excludeProductId]);
+  }, [category, excludeProductId]);
 
   useEffect(() => {
     fetchData();
@@ -76,8 +82,12 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
                 >
                   <div className="bg-slate-300 h-full p-4 min-w-[120px] md:min-w-[145px] animate-pulse"></div>
                   <div className="p-4 grid w-full gap-2">
-                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black bg-slate-200 animate-pulse rounded-full p-1">&nbsp;</h2>
-                    <p className="capitalize text-slate-500 p-1 bg-slate-200 animate-pulse rounded-full">&nbsp;</p>
+                    <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black bg-slate-200 animate-pulse rounded-full p-1">
+                      &nbsp;
+                    </h2>
+                    <p className="capitalize text-slate-500 p-1 bg-slate-200 animate-pulse rounded-full">
+                      &nbsp;
+                    </p>
                     <div className="flex gap-3 w-full">
                       <p className="text-red-600 font-medium p-1 bg-slate-200 w-full animate-pulse rounded-full"></p>
                       <p className="text-slate-500 line-through p-1 bg-slate-200 w-full animate-pulse rounded-full"></p>
@@ -124,7 +134,7 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
                       className="h-full object-scale-down transition-all hover:scale-110 dark:mix-blend-normal"
                     />
                   </div>
-                  <div className="p-4 grid">
+                  <div className="p-3 grid">
                     <h2 className="font-medium text-base md:text-lg text-ellipsis line-clamp-1 text-black dark:text-slate-300">
                       {product?.productName}
                     </h2>
@@ -141,17 +151,18 @@ const HorizontalCardProduct = ({ category, heading, excludeProductId }) => {
                     </div>
 
                     {/*  */}
-                    <button className="px-6 py-0.5">
+                    <button
+                      type="button"
+                      className="inline-flex items-center mt-2 px-0 py-0 w-fit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleAddtoCart(e, product?._id);
+                      }}
+                    >
                       <div className="buttonClass">
                         <div className="button-wrapper">
-                          <div
-                            className="text"
-                            onClick={(e) => {
-                              handleAddtoCart(e, product?._id);
-                            }}
-                          >
-                            Add To Cart
-                          </div>
+                          <div className="text">Add To Cart</div>
                           <span className="icon">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
