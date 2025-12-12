@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SummaryApi from "../common";
 import moment from "moment";
 import displayINRCurrency from "../helpers/displayCurrency";
 
-const OrderPage = () => {
+const AllOrder = () => {
   const [data, setData] = useState([]);
 
   const fetchOrderDetails = async () => {
-    const response = await fetch(SummaryApi.getOrder.url, {
-      method: SummaryApi.getOrder.method,
+    const response = await fetch(SummaryApi.allOrder.url, {
+      method: SummaryApi.allOrder.method,
       credentials: "include",
     });
 
@@ -23,8 +23,8 @@ const OrderPage = () => {
   }, []);
 
   return (
-    <div className="container mx-auto">
-      <div className="text-center text-lg my-3">
+    <div className="h-[calc(100vh-190px)] overflow-y-scroll">
+      <div className="text-center text-lg my-3 mr-2">
         {data.length === 0 && (
           <p className="py-5 bg-white dark:bg-gray-700 dark:text-white">
             No Order available
@@ -36,21 +36,21 @@ const OrderPage = () => {
         {data.map((item, index) => {
           return (
             <div key={item.userId + index}>
-              <p className="font-medium text-lg ">
+              <p className="font-medium text-lg">
                 {moment(item.createdAt).format("LL")}
               </p>
-              <div className="border rounded dark:border-slate-700">
+              <div className="border rounded p-2">
                 <div className="flex flex-col lg:flex-row justify-between">
                   <div className="grid gap-1">
                     {item?.productDetails.map((product, index) => {
                       return (
                         <div
                           key={product.productId + index}
-                          className="flex  gap-3 bg-slate-100 dark:bg-gray-800"
+                          className="flex  gap-3 bg-slate-100"
                         >
                           <img
                             src={product.image[0]}
-                            className="w-28 h-28 bg-slate-200 dark:bg-gray-700 object-scale-down p-2"
+                            className="w-28 h-28 bg-slate-200 object-scale-down p-2"
                           />
                           <div>
                             <div className="font-medium text-lg text-ellipsis line-clamp-1">
@@ -107,4 +107,4 @@ const OrderPage = () => {
   );
 };
 
-export default OrderPage;
+export default AllOrder;
