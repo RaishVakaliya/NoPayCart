@@ -8,7 +8,6 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
   const [UserRole, setUserRole] = useState(role);
   const handleOnChangeSelect = (e) => {
     setUserRole(e.target.value);
-    // console.log(e.target.value);
   };
   const UpdateUserRole = async (e) => {
     const fetchResponse = await fetch(SummaryApi.updateUser.url, {
@@ -29,7 +28,6 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
       onClose();
       callFunc();
     }
-    // console.log("role updated", responseData);
   };
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 pt-10 pb-6 w-full h-full z-10 flex justify-between items-center bg-slate-200 bg-opacity-50 dark:bg-slate-900 dark:bg-opacity-50">
@@ -37,7 +35,9 @@ const ChangeUserRole = ({ name, email, role, userId, onClose, callFunc }) => {
         <button className="block ml-auto dark:text-slate-300" onClick={onClose}>
           <IoMdClose />
         </button>
-        <h1 className="pb-4 text-lg font-medium dark:text-slate-300">Change User Role</h1>
+        <h1 className="pb-4 text-lg font-medium dark:text-slate-300">
+          Change User Role
+        </h1>
         <p className="dark:text-slate-300">Name : {name}</p>
         <p className="dark:text-slate-300">Email : {email}</p>
         <div className="flex justify-between items-center my-4">

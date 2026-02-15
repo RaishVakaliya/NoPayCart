@@ -201,11 +201,7 @@ const ProductDetails = () => {
             </div>
 
             <div className="flex my-1 gap-3">
-              {/* Buy button */}
               <button className="bg-slate-200 animate-pulse cursor-default w-32 p-2 h-12 rounded-md"></button>
-
-              {/* Add to Cart button */}
-
               <button className="bg-slate-200 animate-pulse cursor-default w-32 p-2 h-12 rounded-md"></button>
             </div>
 
@@ -259,7 +255,6 @@ const ProductDetails = () => {
               </button>
 
               {/* Add to Cart button */}
-
               <button
                 className="overflow-hidden w-32 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group"
                 onClick={(e) => {

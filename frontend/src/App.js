@@ -21,7 +21,6 @@ function App() {
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
 
-    // Apply or remove dark class from document
     if (newTheme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -37,11 +36,9 @@ function App() {
       });
 
       const dataApi = await dataResponse.json();
-      // console.log("fetchUserDetails response:", dataApi);
 
       if (dataApi.success) {
         dispatch(setUserDetails(dataApi.data));
-        // console.log("User details set:", dataApi.data);
       } else {
         console.log("Failed to fetch user details:", dataApi.message);
       }
@@ -58,16 +55,13 @@ function App() {
 
     const dataApi = await dataResponse.json();
 
-    setProductCount(dataApi?.data?.count); //this count is come from user controller->CountCartProduct
+    setProductCount(dataApi?.data?.count);
   }, []);
 
   useEffect(() => {
-    /* user details */
     fetchUserDetails();
-    // user cart product details
     fetchUserAddToCart();
 
-    // Apply theme on initial load
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -79,8 +73,8 @@ function App() {
     <>
       <Context.Provider
         value={{
-          fetchUserDetails, //user details fetch
-          ProductCount, //current user's cart product count
+          fetchUserDetails,
+          ProductCount,
           fetchUserAddToCart,
           theme,
           toggleTheme,

@@ -50,7 +50,6 @@ const CategoryProduct = () => {
     }));
   };
 
-  //no dependency warning now
   useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -67,12 +66,11 @@ const CategoryProduct = () => {
 
     setfilterCategoryList(arrayOfCategory);
 
-    // format URL query params
     const urlFormat = arrayOfCategory
       .map((el, index) =>
         arrayOfCategory.length - 1 === index
           ? `category=${el}`
-          : `category=${el}&&`
+          : `category=${el}&&`,
       )
       .join("");
 
@@ -85,13 +83,13 @@ const CategoryProduct = () => {
 
     if (value === "asc") {
       setdata((preve) =>
-        [...preve].sort((a, b) => a.sellingPrice - b.sellingPrice)
+        [...preve].sort((a, b) => a.sellingPrice - b.sellingPrice),
       );
     }
 
     if (value === "dsc") {
       setdata((preve) =>
-        [...preve].sort((a, b) => b.sellingPrice - a.sellingPrice)
+        [...preve].sort((a, b) => b.sellingPrice - a.sellingPrice),
       );
     }
   };

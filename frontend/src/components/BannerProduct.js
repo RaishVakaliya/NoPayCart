@@ -64,7 +64,7 @@ const BannerProduct = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setcurrentImage((prev) =>
-        prev < desktopImages.length - 1 ? prev + 1 : 0
+        prev < desktopImages.length - 1 ? prev + 1 : 0,
       );
     }, 4000);
     return () => clearInterval(interval);
@@ -108,7 +108,6 @@ const BannerProduct = () => {
         </div>
 
         {/* mobile version */}
-
         <div className="flex w-full h-full overflow-hidden md:hidden">
           {mobileImages.map((imageUrl, index) => {
             return (

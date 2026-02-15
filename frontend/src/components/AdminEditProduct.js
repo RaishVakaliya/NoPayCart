@@ -47,8 +47,6 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
   };
 
   const handleDeleteProductImage = async (index) => {
-    // console.log("image index", index);
-
     const newProductImage = [...data.productImage];
     newProductImage.splice(index, 1);
 
@@ -207,7 +205,6 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
             )}
           </div>
 
-          {/* Rest of the form inputs with dark mode classes */}
           <label htmlFor="price" className="mt-3 dark:text-slate-300">
             Price :
           </label>
@@ -254,7 +251,6 @@ const AdminEditProduct = ({ onClose, productData, fetchdata }) => {
         </form>
       </div>
 
-      {/* display image full screen component */}
       {openFullScreenImage && (
         <DisplayImage
           onClose={() => {

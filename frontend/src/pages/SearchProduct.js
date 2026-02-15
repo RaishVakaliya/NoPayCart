@@ -7,7 +7,6 @@ const SearchProduct = () => {
   const query = useLocation();
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(false);
-  // console.log("query", query.search);
 
   const fetchProduct = useCallback(async () => {
     setloading(true);

@@ -54,7 +54,6 @@ const SignUp = () => {
       });
 
       const dataApi = await dataResponse.json();
-      // console.log("data", dataApi);
 
       if (dataApi.success) {
         toast.success(dataApi.message);
@@ -72,24 +71,6 @@ const SignUp = () => {
     <section id="signup">
       <div className="mx-auto items-center">
         <div className="p-5 w-full max-w-sm mx-auto">
-          {/* <div className="h-20 w-20 mx-auto relative overflow-hidden rounded-full">
-            <div className="">
-              <img src={data.profilePic || loginicons} alt="login icons" />
-            </div>
-            <form>
-              <label>
-                <div className="text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer py-1 text-center absolute bottom-0 w-full">
-                  Upload Photo
-                </div>
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={handleUploadPic}
-                />
-              </label>
-            </form>
-          </div> */}
-
           <form className="form" onSubmit={handleSubmit}>
             <div className="h-20 w-20 mb-2 mx-auto relative overflow-hidden rounded-full">
               <div className="">

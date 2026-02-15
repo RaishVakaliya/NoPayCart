@@ -4,7 +4,8 @@
   display: block;
   padding: 2.2rem;
   max-width: 350px;
-  background: linear-gradient(
+  background:
+    linear-gradient(
       14deg,
       rgba(2, 0, 36, 0.8) 0%,
       rgba(24, 24, 65, 0.7) 66%,
@@ -296,8 +297,10 @@ html.dark .cursor-pointer svg,
   height: 4px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
-    0 0 0 8px rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 0 8px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 0.1);
   animation: animate 3s linear infinite;
 }
 

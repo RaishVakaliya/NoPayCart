@@ -3,7 +3,7 @@ import Logo from "./Logo";
 import { IoSearchSharp } from "react-icons/io5";
 import { PiUserCircleDuotone } from "react-icons/pi";
 import { BsCartFill } from "react-icons/bs";
-import { FaSun, FaMoon } from "react-icons/fa"; // Add these imports
+import { FaSun, FaMoon } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,9 +26,6 @@ const Header = () => {
   const URLSearch = new URLSearchParams(searchInput?.search);
   const searchQuery = URLSearch.getAll("q");
   const [search, setsearch] = useState(searchQuery);
-  // console.log("Header - user state:", user);
-
-  // console.log("searchInput", searchInput?.search.split("=")[1]);
 
   // Close profile menu on outside click
   useEffect(() => {

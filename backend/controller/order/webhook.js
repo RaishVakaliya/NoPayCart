@@ -42,7 +42,7 @@ const webhooks = async (request, response) => {
     event = stripe.webhooks.constructEvent(
       payloadString,
       header,
-      endpointSecret
+      endpointSecret,
     );
   } catch (err) {
     response.status(400).send(`Webhook Error: ${err.message}`);
@@ -55,7 +55,7 @@ const webhooks = async (request, response) => {
       const session = event.data.object;
 
       const lineItems = await stripe.checkout.sessions.listLineItems(
-        session.id
+        session.id,
       );
 
       const productDetails = await getLIneItems(lineItems);
@@ -88,7 +88,6 @@ const webhooks = async (request, response) => {
       }
       break;
 
-    // ... handle other event types
     default:
       console.log(`Unhandled event type ${event.type}`);
   }

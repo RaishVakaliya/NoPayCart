@@ -21,8 +21,6 @@ const getCategoryProduct = async (req, res) => {
       error: false,
       data: productByCategory,
     });
-
-    // console.log("product category", productCategory);
   } catch (err) {
     res.status(400).json({
       message: err.message || err,
