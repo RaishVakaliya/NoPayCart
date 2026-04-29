@@ -10,7 +10,7 @@ app.use(
   cors({
     origin: process.env.FRONTEND_URL,
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());
@@ -22,6 +22,14 @@ const PORT = process.env.PORT || 8080;
 
 app.get("/", (req, res) => {
   res.send("Backend is running");
+});
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    status: "OK",
+    message: "Your API is running",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 connectDB().then(() => {

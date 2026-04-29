@@ -7,6 +7,7 @@ const Cancel = () => {
     <div className="bg-slate-200 dark:bg-slate-400 w-full max-w-md mx-auto flex justify-center items-center flex-col p-4 m-2 rounded">
       <img
         src={CANCELIMAGE}
+        alt="cancel"
         width={150}
         height={150}
         className="mix-blend-multiply"

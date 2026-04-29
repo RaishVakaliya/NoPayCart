@@ -27,20 +27,20 @@ const CategoryWiseProductDisplay = ({
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const fetchData = async () => {
-    setloading(true);
-    const categoryProduct = await fetchCategoryWiseProduct(category);
-    setloading(false);
-    // Filter out the current product if excludeProductId is provided
-    const filteredData = excludeProductId
-      ? categoryProduct?.data?.filter(
-          (product) => product._id !== excludeProductId,
-        ) || []
-      : categoryProduct?.data || [];
-    setdata(filteredData);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      setloading(true);
+      const categoryProduct = await fetchCategoryWiseProduct(category);
+      setloading(false);
+      // Filter out the current product if excludeProductId is provided
+      const filteredData = excludeProductId
+        ? categoryProduct?.data?.filter(
+            (product) => product._id !== excludeProductId,
+          ) || []
+        : categoryProduct?.data || [];
+      setdata(filteredData);
+    };
+
     fetchData();
   }, [category, excludeProductId]);
 

@@ -49,6 +49,7 @@ const AllOrder = () => {
                         >
                           <img
                             src={product.image[0]}
+                            alt={product.name}
                             className="w-28 h-28 bg-slate-200 dark:bg-gray-700 object-scale-down p-2"
                           />
                           <div>
