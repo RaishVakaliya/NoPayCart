@@ -9,7 +9,6 @@ import { useCallback, useEffect, useState } from "react";
 import Context from "./context";
 import { useDispatch } from "react-redux";
 import { setUserDetails } from "./store/userSlice";
-import CookieWarning from "./components/CookieWarning";
 
 function App() {
   const [ProductCount, setProductCount] = useState(0);
@@ -87,7 +86,6 @@ function App() {
           transition={Flip}
           pauseOnHover={false}
         />
-        <CookieWarning theme={theme} />
         <Header />
         <main className="min-h-[calc(100vh-120px)] pt-16 dark:bg-gray-800 dark:text-white">
           <Outlet />
