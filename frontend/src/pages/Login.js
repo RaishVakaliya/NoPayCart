@@ -41,6 +41,7 @@ const Login = () => {
     const dataApi = await dataResponse.json();
 
     if (dataApi.success) {
+      localStorage.setItem("token", dataApi.data);
       toast.success(dataApi.message);
       navigate("/");
       // Add small delay to ensure cookie is set before fetching user details

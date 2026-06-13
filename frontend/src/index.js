@@ -7,12 +7,39 @@ import router from "./routes/index";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
+// Global fetch wrapper to automatically add Authorization header
+const originalFetch = window.fetch;
+window.fetch = async function (url, options = {}) {
+  const token = localStorage.getItem("token");
+  if (token) {
+    if (!options.headers) {
+      options.headers = {};
+    }
+    if (options.headers instanceof Headers) {
+      options.headers.set("Authorization", `Bearer ${token}`);
+    } else if (Array.isArray(options.headers)) {
+      const authExists = options.headers.some(
+        (h) => h[0].toLowerCase() === "authorization",
+      );
+      if (!authExists) {
+        options.headers.push(["Authorization", `Bearer ${token}`]);
+      }
+    } else {
+      options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+      };
+    }
+  }
+  return originalFetch(url, options);
+};
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>,
   // </React.StrictMode>
 );
 
